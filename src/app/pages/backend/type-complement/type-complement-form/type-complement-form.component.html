@@ -1,0 +1,39 @@
+<div  class="">
+   <h1 mat-dialog-title>Modification image </h1>
+   <form mat-dialog-content method="post" enctype="multipart/form-data" class="" (ngSubmit)="typeComplementForm.valid && onFormSubmit()" [formGroup]="typeComplementForm">
+      <!--Nom du produit-->
+      <div class="form-group m-2">
+         <label for="nom">Nom Du produit</label>
+         <input type="text" class="form-control mt-1" formControlName="name" id="nom"
+                aria-describedby="emailHelp" placeholder="Entrer le nom du produit"
+                [ngClass]="{
+                      'is-valid':typeComplementForm.get('name').valid && (typeComplementForm.get('name').touched||typeComplementForm.get('name').dirty),
+                      'is-invalid':typeComplementForm.get('name').invalid && (typeComplementForm.get('name').touched||typeComplementForm.get('name').dirty)
+                      }">
+         <div class="text-danger mt-2" *ngIf="typeComplementForm.get('name').invalid && (typeComplementForm.get('name').touched||typeComplementForm.get('name').dirty)">
+            <span *ngIf="typeComplementForm.get('name').errors['required']">Le champ est obligatoire</span>
+            <span *ngIf="typeComplementForm.get('name').errors['minlength']">Le champ requiert au moins 4 caractères</span>
+         </div>
+      </div>
+      <!-- Description du produit-->
+      <div class="form-group m-2">
+         <label for="description">Description Du produit</label>
+         <textarea type="text" class="form-control mt-1" formControlName="description" id="description"
+                   aria-describedby="emailHelp" placeholder="Entrer la description du produit"
+                   [ngClass]="{
+                  'is-valid':typeComplementForm.get('description').valid && (typeComplementForm.get('description').touched||typeComplementForm.get('description').dirty),
+                  'is-invalid':typeComplementForm.get('description').invalid && (typeComplementForm.get('description').touched||typeComplementForm.get('description').dirty)
+                  }">
+          </textarea>
+         <div class="text-danger mt-2" *ngIf="typeComplementForm.get('description').invalid && (typeComplementForm.get('description').touched||typeComplementForm.get('description').dirty)">
+            <span *ngIf="typeComplementForm.get('description').errors['required']">Le champ est obligatoire</span>
+            <span *ngIf="typeComplementForm.get('description').errors['minlength']">Le champ requiert au moins 10 caractères</span>
+         </div>
+      </div>
+      <div mat-dialog-actions>
+         <button mat-button (click)="onNoClick()">Annuler</button>
+         <button mat-button [mat-dialog-close]="productDataEdit" [disabled]="!typeComplementForm.valid"  type="submit">Valider</button>
+      </div>
+
+   </form>
+</div>

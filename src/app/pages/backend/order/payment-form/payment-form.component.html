@@ -1,0 +1,20 @@
+<div  class="">
+   <h1 mat-dialog-title>Payement de la commande</h1>
+   <form mat-dialog-content method="post" enctype="multipart/form-data" (ngSubmit)="orderForm.valid && orderFormSubmit()" [formGroup]="orderForm">
+      <!--types de payment-->
+      <div class="form-group m-2">
+         <label for="categorie">Type De payement</label>
+         <select class="form-control" formControlName="type" id="categorie" >
+            <option  [ngValue]="payement"  *ngFor="let payement of types "> {{ payement   }}</option>
+         </select>
+         <div class="text-danger mt-2" *ngIf="orderForm.get('type').invalid && (orderForm.get('type').touched||orderForm.get('type').dirty)">
+            <span *ngIf="orderForm.get('type').errors['required']">Le champ est obligatoire </span>
+         </div>
+      </div>
+      <!--Button submit-->
+      <div class="form-group m-2">
+         <button type="reset" class="btn btn-primary" >annuler</button>
+         <button type="submit" class="btn btn-primary max-width " [disabled]="orderForm.invalid">Modifier</button>
+      </div>
+   </form>
+</div>

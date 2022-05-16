@@ -1,0 +1,64 @@
+<!-- [ navigation menu ] start -->
+<nav class="pcoded-navbar menupos-fixed menu-light brand-blue ">
+   <div class="navbar-wrapper ">
+      <div class="navbar-brand header-logo">
+         <a href="index.html" class="b-brand">
+            <img src="../assets/images/logo.svg" alt="" class="logo images">
+            <img src="../assets/images/logo-icon.svg" alt="" class="logo-thumb images">
+         </a>
+         <a class="mobile-menu" id="mobile-collapse" href="#"><span></span></a>
+      </div>
+      <div class="navbar-content scroll-div">
+         <ul class="nav pcoded-inner-navbar">
+            <li class="nav-item pcoded-menu-caption">
+               <label>Dashboard</label>
+            </li>
+            <li class="nav-item pcoded-hasmenu" routerLinkActive="active" >
+               <a routerLink="/dashboard" routerLinkActive="active">
+                  <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                  <span class="">Dashboard</span>
+               </a>
+            </li>
+
+            <li class="nav-item pcoded-menu-caption">
+               <label>Gestion du restaurant</label>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+               <a routerLink="/burgers" routerLinkActive="active" class="nav-link">
+                  <span class="pcoded-micon"><i class="feather icon-file-text"></i>
+                  </span><span class="pcoded-mtext">Burgers</span></a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+               <a routerLink="/menus" routerLinkActive="active" class="nav-link">
+                  <span class="pcoded-micon"><i class="feather icon-file-text"></i>
+                  </span><span class="pcoded-mtext">Menus</span></a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+               <a routerLink="/complements" routerLinkActive="active" class="nav-link">
+                  <span class="pcoded-micon"><i class="feather icon-file-text"></i>
+                  </span><span class="pcoded-mtext">Complements</span></a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+               <a routerLink="/types-complements" routerLinkActive="active" class="nav-link">
+                  <span class="pcoded-micon"><i class="feather icon-file-text"></i>
+                  </span><span class="pcoded-mtext">Types Complements</span></a>
+            </li>
+            <li class="nav-item pcoded-menu-caption">
+               <label>Commandes</label>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+               <a routerLink="/orders" routerLinkActive="active" class="nav-link"><span class="pcoded-micon">
+                  <i class="feather icon-pie-chart"></i>
+                 </span><span class="pcoded-mtext">Commandes</span>
+               </a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+               <a class="nav-link"  routerLink="/users" routerLinkActive="active" ><span class="pcoded-micon">
+                  <i class="feather icon-map"></i>
+               </span><span class="pcoded-mtext">Users</span></a>
+            </li>
+         </ul>
+      </div>
+   </div>
+</nav>
+<!-- [ navigation menu ] end -->

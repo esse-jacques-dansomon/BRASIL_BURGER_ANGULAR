@@ -1,0 +1,64 @@
+<div  class="">
+   <h1 mat-dialog-title>{{ formulaireTitle }}</h1>
+   <form mat-dialog-content method="post" enctype="multipart/form-data" class="" (ngSubmit)="complementForm.valid && complementSubmit()" [formGroup]="complementForm">
+      <!--Nom du complement-->
+      <div class="form-group m-2">
+         <label for="nom">Nom Du complement</label>
+         <input type="text" class="form-control mt-1" formControlName="name" id="nom"
+                aria-describedby="emailHelp" placeholder="Entrer le nom du complement"
+                [ngClass]="{
+                      'is-valid':complementForm.get('name').valid && (complementForm.get('name').touched||complementForm.get('name').dirty),
+                      'is-invalid':complementForm.get('name').invalid && (complementForm.get('name').touched||complementForm.get('name').dirty)
+                      }">
+         <div class="text-danger mt-2" *ngIf="complementForm.get('name').invalid && (complementForm.get('name').touched||complementForm.get('name').dirty)">
+            <span *ngIf="complementForm.get('name').errors['required']">Le champ est obligatoire</span>
+            <span *ngIf="complementForm.get('name').errors['minlength']">Le champ requiert au moins 4 caractères</span>
+         </div>
+      </div>
+      <!-- Description du complement-->
+      <div class="form-group m-2">
+         <label for="description">Description Du complement</label>
+         <textarea type="text" class="form-control mt-1" formControlName="description" id="description"
+                   aria-describedby="emailHelp" placeholder="Entrer la description du complement"
+                   [ngClass]="{
+                  'is-valid':complementForm.get('description').valid && (complementForm.get('description').touched||complementForm.get('description').dirty),
+                  'is-invalid':complementForm.get('description').invalid && (complementForm.get('description').touched||complementForm.get('description').dirty)
+                  }">
+          </textarea>
+         <div class="text-danger mt-2" *ngIf="complementForm.get('description').invalid && (complementForm.get('description').touched||complementForm.get('description').dirty)">
+            <span *ngIf="complementForm.get('description').errors['required']">Le champ est obligatoire</span>
+            <span *ngIf="complementForm.get('description').errors['minlength']">Le champ requiert au moins 10 caractères</span>
+         </div>
+      </div>
+      <!--Prix du complement-->
+      <div class="form-group m-2">
+         <label for="prix">Prix Du complement</label>
+         <input type="number" class="form-control mt-1" formControlName="price" id="prix"
+                aria-describedby="emailHelp" placeholder="Entrer le prix du complement"
+                [ngClass]="{
+                          'is-valid':complementForm.get('price').valid && (complementForm.get('price').touched||complementForm.get('price').dirty),
+                          'is-invalid':complementForm.get('price').invalid && (complementForm.get('price').touched||complementForm.get('price').dirty)
+                          }">
+         <div class="text-danger mt-2" *ngIf="complementForm.get('price').invalid && (complementForm.get('price').touched||complementForm.get('price').dirty)">
+            <span *ngIf="complementForm.get('price').errors['required']">Le champ est obligatoire </span>
+            <span *ngIf="complementForm.get('price').errors?.pattern">Le champ requiert que des chiffres </span>
+         </div>
+      </div>
+      <!--Categories du complemnet-->
+      <div class="form-group m-2">
+         <label for="categorie">Type Complement</label>
+         <select class="form-control" formControlName="type_id" id="categorie" >
+            <option  [ngValue]="type_complement.id"  *ngFor="let type_complement of (type_complements$ | async) "> {{ type_complement.name }}</option>
+         </select>
+         <div class="text-danger mt-2" *ngIf="complementForm.get('type_id').invalid && (complementForm.get('type_id').touched||complementForm.get('type_id').dirty)">
+            <span *ngIf="complementForm.get('type_id').errors['required']">Le champ est obligatoire </span>
+         </div>
+      </div>
+
+      <!--Buton submit    -->
+      <div class="form-group m-2">
+         <button type="reset" class="btn btn-primary" >annuler</button>
+         <button type="submit" class="btn btn-primary max-width " [disabled]="complementForm.invalid">{{ submitMessage}} </button>
+      </div>
+   </form>
+</div>

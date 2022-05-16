@@ -1,0 +1,76 @@
+<div  class="">
+   <h1 mat-dialog-title>{{ formulaireTitle }}</h1>
+   <form mat-dialog-content method="post" enctype="multipart/form-data" class="" (ngSubmit)="menuForm.valid && menuFormSubmit()" [formGroup]="menuForm">
+      <!--Nom du menu-->
+      <div class="form-group m-2">
+         <label for="nom">Nom Du menu</label>
+         <input type="text" class="form-control mt-1" formControlName="name" id="nom"
+                aria-describedby="emailHelp" placeholder="Entrer le nom du menu"
+                [ngClass]="{
+                      'is-valid':menuForm.get('name').valid && (menuForm.get('name').touched||menuForm.get('name').dirty),
+                      'is-invalid':menuForm.get('name').invalid && (menuForm.get('name').touched||menuForm.get('name').dirty)
+                      }">
+         <div class="text-danger mt-2" *ngIf="menuForm.get('name').invalid && (menuForm.get('name').touched||menuForm.get('name').dirty)">
+            <span *ngIf="menuForm.get('name').errors['required']">Le champ est obligatoire</span>
+            <span *ngIf="menuForm.get('name').errors['minlength']">Le champ requiert au moins 4 caractères</span>
+         </div>
+      </div>
+      <!-- Description du menu-->
+      <div class="form-group m-2">
+         <label for="description">Description Du menu</label>
+         <textarea type="text" class="form-control mt-1" formControlName="description" id="description"
+                   aria-describedby="emailHelp" placeholder="Entrer la description du menu"
+                   [ngClass]="{
+                  'is-valid':menuForm.get('description').valid && (menuForm.get('description').touched||menuForm.get('description').dirty),
+                  'is-invalid':menuForm.get('description').invalid && (menuForm.get('description').touched||menuForm.get('description').dirty)
+                  }">
+          </textarea>
+         <div class="text-danger mt-2" *ngIf="menuForm.get('description').invalid && (menuForm.get('description').touched||menuForm.get('description').dirty)">
+            <span *ngIf="menuForm.get('description').errors['required']">Le champ est obligatoire</span>
+            <span *ngIf="menuForm.get('description').errors['minlength']">Le champ requiert au moins 10 caractères</span>
+         </div>
+      </div>
+      <!--Complements-->
+      <div class="form-group m-2">
+         <label for="complements">Complement</label>
+         <ng-multiselect-dropdown formControlName="complements" id="complements"
+                                  [placeholder]="'Selectionner les complements'"
+                                  [settings]="dropdownSettings"
+                                  [data]="dropdownList"
+                                  (onSelect)="onItemSelect($event)"
+                                  (onSelectAll)="onSelectAll($event)"
+         >
+         </ng-multiselect-dropdown>
+
+      </div>
+      <!--Type de burger burger-->
+      <div class="form-group m-2">
+         <label for="burger">Type Complement</label>
+         <select class="form-control" formControlName="burger_id" id="burger" >
+            <option  [ngValue]="burger.id"  *ngFor="let burger of (burgers$ | async) as burgers "> {{ burger.name }}</option>
+         </select>
+         <div class="text-danger mt-2" *ngIf="menuForm.get('burger_id').invalid && (menuForm.get('burger_id').touched||menuForm.get('burger_id').dirty)">
+            <span *ngIf="menuForm.get('burger_id').errors['required']">Le champ est obligatoire </span>
+         </div>
+      </div>
+      <!--Cook time-->
+      <div class="form-group m-2">
+         <label for="cook_time">Cook time</label>
+         <input type="number" class="form-control mt-1" formControlName="cook_time" id="cook_time"
+                aria-describedby="emailHelp" placeholder="Entrer le temps de cuisson du menu"
+                [ngClass]="{
+                          'is-valid':menuForm.get('cook_time').valid && (menuForm.get('cook_time').touched||menuForm.get('cook_time').dirty),
+                          'is-invalid':menuForm.get('cook_time').invalid && (menuForm.get('cook_time').touched||menuForm.get('cook_time').dirty)
+                          }">
+         <div class="text-danger mt-2" *ngIf="menuForm.get('cook_time').invalid && (menuForm.get('cook_time').touched||menuForm.get('cook_time').dirty)">
+            <span *ngIf="menuForm.get('cook_time').errors['required']">Le champ est obligatoire </span>
+            <span *ngIf="menuForm.get('cook_time').errors?.pattern">Le champ requiert que des chiffres </span>
+         </div>
+      </div>
+      <!--Buton submit    -->
+      <div class="form-group m-2">
+         <button type="reset" class="btn btn-primary" >annuler</button>
+         <button type="submit" class="btn btn-primary max-width " [disabled]="menuForm.invalid">{{ submitMessage}} </button>
+      </div>
+   </form>
+</div>

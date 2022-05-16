@@ -1,0 +1,18 @@
+<div  class="">
+   <h1 mat-dialog-title>Modification image {{ productDataEdit.name }}</h1>
+   <form mat-dialog-content method="post" enctype="multipart/form-data" class="" (ngSubmit)="productForm.valid" [formGroup]="productForm">
+      <!--image du produit-->
+      <div class="form-group m-2">
+         <input type="file" (change)="onFileChange($event)" class="form-control mt-1" formControlName="name" id="nom"
+                aria-describedby="emailHelp" placeholder="Entrer le nom du produit"
+                [ngClass]="{
+                      'is-valid':productForm.get('name').valid && (productForm.get('name').touched||productForm.get('name').dirty),
+                      'is-invalid':productForm.get('name').invalid && (productForm.get('name').touched||productForm.get('name').dirty)
+                      }">
+         <div class="text-danger mt-2" *ngIf="productForm.get('name').invalid && (productForm.get('name').touched||productForm.get('name').dirty)">
+            <span *ngIf="productForm.get('name').errors['required']">Le champ est obligatoire</span>
+            <span *ngIf="productForm.get('name').errors['minlength']">Le champ requiert au moins 4 caractères</span>
+         </div>
+      </div>
+   </form>
+</div>

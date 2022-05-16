@@ -1,0 +1,57 @@
+<div class="container-xl">
+   <div class="table-responsive">
+      <div class="table-wrapper" *ngIf="(complements$ | async ) as complements">
+         <div class="table-title">
+            <div class="row">
+               <div class="col-sm-5">
+                  <h2>User <b>Management</b></h2>
+               </div>
+               <div class="col-sm-7">
+                  <a (click)="openDialog()" class="btn btn-secondary"><i class="material-icons">&#xE147;</i> <span>Add New User</span></a>
+                  <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE24D;</i> <span>Export to Excel</span></a>
+               </div>
+            </div>
+         </div>
+         <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+               <th>Name</th>
+               <th>Price</th>
+               <th>Description</th>
+               <th>Status</th>
+               <th>Status</th>
+               <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let complement of complements | paginate: { itemsPerPage:2, currentPage: currentPage }">
+               <td><a href="#"><img  src="http://localhost:5000/{{complement.image}}" class="avatar" alt="Avatar" width="50px" height="50px"> {{complement.name}}</a></td>
+               <td>{{complement.price | number}} FCFA</td>
+               <td> {{complement.description}}</td>
+               <td>
+                  <mat-slide-toggle (click)="updateStatusProductDialog(complement, 'a')" [checked]="complement.is_available"> Dispo </mat-slide-toggle>
+                  <br>
+                  <mat-slide-toggle (click)="updateStatusProductDialog(complement, 'p')" [checked]="complement.is_popular"> pouplar </mat-slide-toggle>
+               </td>
+               <td>
+                  <mat-slide-toggle (click)="updateStatusProductDialog(complement, 'm')" [checked]="complement.is_offer_of_the_day"> Du Jour </mat-slide-toggle>
+                  <br>
+                  <mat-slide-toggle (click)="updateStatusProductDialog(complement, 'f' )" [checked]="complement.is_featured"> Pomo </mat-slide-toggle>
+               </td>
+               <td>
+                  <a (click)="editImageProduct(complement)" class="settings" title="image" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
+                  <a (click)="openEditDialog(complement)" class="edit" title="edit" data-toggle="modal">  <i class="material-icons" data-toggle="tooltip" >&#xE254;</i>  </a>
+               </td>
+            </tr>
+
+            </tbody>
+         </table>
+         <div class="clearfix">
+            <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+            <ul class="pagination">
+               <pagination-controls (pageChange)=" currentPage = $event" class="my-pagination"></pagination-controls>
+            </ul>
+         </div>
+      </div>
+   </div>
+</div>

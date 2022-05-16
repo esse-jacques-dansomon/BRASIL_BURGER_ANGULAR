@@ -1,0 +1,67 @@
+<div  class="">
+   <h1 mat-dialog-title>{{ formulaireTitle }}</h1>
+   <form mat-dialog-content method="post" enctype="multipart/form-data" class="" (ngSubmit)="burgerForm.valid && burgerFormSubmit()" [formGroup]="burgerForm">
+      <!--Nom du produit-->
+      <div class="form-group m-2">
+         <label for="nom">Nom Du produit</label>
+         <input type="text" class="form-control mt-1" formControlName="name" id="nom"
+                aria-describedby="emailHelp" placeholder="Entrer le nom du produit"
+                [ngClass]="{
+                      'is-valid':burgerForm.get('name').valid && (burgerForm.get('name').touched||burgerForm.get('name').dirty),
+                      'is-invalid':burgerForm.get('name').invalid && (burgerForm.get('name').touched||burgerForm.get('name').dirty)
+                      }">
+         <div class="text-danger mt-2" *ngIf="burgerForm.get('name').invalid && (burgerForm.get('name').touched||burgerForm.get('name').dirty)">
+            <span *ngIf="burgerForm.get('name').errors['required']">Le champ est obligatoire</span>
+            <span *ngIf="burgerForm.get('name').errors['minlength']">Le champ requiert au moins 4 caractères</span>
+         </div>
+      </div>
+      <!-- Description du produit-->
+      <div class="form-group m-2">
+         <label for="description">Description Du produit</label>
+         <textarea type="text" class="form-control mt-1" formControlName="description" id="description"
+                   aria-describedby="emailHelp" placeholder="Entrer la description du produit"
+                   [ngClass]="{
+                  'is-valid':burgerForm.get('description').valid && (burgerForm.get('description').touched||burgerForm.get('description').dirty),
+                  'is-invalid':burgerForm.get('description').invalid && (burgerForm.get('description').touched||burgerForm.get('description').dirty)
+                  }">
+          </textarea>
+         <div class="text-danger mt-2" *ngIf="burgerForm.get('description').invalid && (burgerForm.get('description').touched||burgerForm.get('description').dirty)">
+            <span *ngIf="burgerForm.get('description').errors['required']">Le champ est obligatoire</span>
+            <span *ngIf="burgerForm.get('description').errors['minlength']">Le champ requiert au moins 10 caractères</span>
+         </div>
+      </div>
+      <!--Prix du produit-->
+      <div class="form-group m-2">
+         <label for="prix">Prix Du produit</label>
+         <input type="number" class="form-control mt-1" formControlName="price" id="prix"
+                aria-describedby="emailHelp" placeholder="Entrer le prix du produit"
+                [ngClass]="{
+                          'is-valid':burgerForm.get('price').valid && (burgerForm.get('price').touched||burgerForm.get('price').dirty),
+                          'is-invalid':burgerForm.get('price').invalid && (burgerForm.get('price').touched||burgerForm.get('price').dirty)
+                          }">
+         <div class="text-danger mt-2" *ngIf="burgerForm.get('price').invalid && (burgerForm.get('price').touched||burgerForm.get('price').dirty)">
+            <span *ngIf="burgerForm.get('price').errors['required']">Le champ est obligatoire </span>
+            <span *ngIf="burgerForm.get('price').errors?.pattern">Le champ requiert que des chiffres </span>
+         </div>
+      </div>
+      <!--Prix du produit-->
+      <div class="form-group m-2">
+         <label for="prix">Cook Time</label>
+         <input type="number" class="form-control mt-1" formControlName="cook_time" id="cook_time"
+                aria-describedby="emailHelp" placeholder="Entrer le temps de cuisson du burger"
+                [ngClass]="{
+                          'is-valid':burgerForm.get('cook_time').valid && (burgerForm.get('cook_time').touched||burgerForm.get('cook_time').dirty),
+                          'is-invalid':burgerForm.get('cook_time').invalid && (burgerForm.get('cook_time').touched||burgerForm.get('cook_time').dirty)
+                          }">
+         <div class="text-danger mt-2" *ngIf="burgerForm.get('cook_time').invalid && (burgerForm.get('cook_time').touched||burgerForm.get('cook_time').dirty)">
+            <span *ngIf="burgerForm.get('cook_time').errors['required']">Le champ est obligatoire </span>
+            <span *ngIf="burgerForm.get('cook_time').errors?.pattern">Le champ requiert que des chiffres </span>
+         </div>
+      </div>
+
+      <!--Buton submit    -->
+      <div class="form-group m-2">
+         <button type="submit" class="btn btn-primary max-width " [disabled]="burgerForm.invalid">{{ submitMessage}} </button>
+      </div>
+   </form>
+</div>
